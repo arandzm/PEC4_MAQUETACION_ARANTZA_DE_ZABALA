@@ -1,8 +1,8 @@
 # Arima — Maquetación Web (PEC 4)
 
-Este proyecto consiste en la maquetación web funcional y responsive para la marca de moda e-commerce **Arima**, desarrollada a partir de los prototipos creados en Figma durante la PEC 3. Todo el código ha sido escrito a mano en HTML5 y CSS3 puro sin dependencias externas.
+Este proyecto consiste en la maquetación web funcional y responsive para la marca de moda e-commerce **Arima**, desarrollada a partir de los prototipos creados en Figma durante la PEC 3.
 
-- **Diseño de Figma:** [Inserta aquí tu enlace a Figma]
+**Diseño de Figma:** [Ver prototipo en Figma](https://www.figma.com/design/I8KBoaTsfvGvF4PxEJKCN6/Wireframes-proyecto-a-MANO-e-IR?node-id=0-1&t=7fC2Z7V9XzgP0cLr-1)
 
 ---
 
@@ -63,7 +63,7 @@ graph TD
     A --> D[about.html - About]
     A --> E[login.html - Sign In]
 
-    subgraph Componentes Emergentes (JS)
+    subgraph "Componentes Emergentes (JS)"
         F[Search Drawer - Buscador Superior]
         G[Bag Drawer - Panel Lateral Carrito]
     end
@@ -76,3 +76,4 @@ graph TD
     C .-> G
     D .-> F
     D .-> G
+```
