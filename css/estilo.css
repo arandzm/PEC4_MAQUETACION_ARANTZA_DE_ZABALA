@@ -1,0 +1,690 @@
+/* ==========================================
+   VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================== */
+:root {
+  --color-primary: #111111;
+  --color-secondary: #666666;
+  --color-bg: #ffffff;
+  --color-border: #eeeeee;
+  --color-input-border: #e5e5e5;
+  --color-placeholder: #e3e3e3;
+  --color-shop-pay: #5a31f4;
+  --color-shop-pay-hover: #4b23e0;
+  --color-badge-old-price: #999999;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1.25rem 3vw;
+  background-color: var(--color-bg);
+  font-family: 'Inter', sans-serif;
+  font-weight: 450;
+  color: var(--color-primary);
+}
+
+body.home-page {
+  padding: 0;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ==========================================
+   HEADER Y NAVEGACIÓN
+   ========================================== */
+.main-header {
+  position: relative;
+  z-index: 1001; /* Capa superior para quedar sobre el overlay al abrir búsqueda */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;          
+  padding: 1.25rem 3vw;
+  width: 100%;             
+  margin: 0 0 2.5rem 0;       
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-left, 
+.nav-right {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.nav-left a, 
+.nav-right a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-size: 0.6875rem;
+  font-weight: 450;
+  letter-spacing: 0.0125rem;
+  transition: color 0.3s ease;
+}
+
+.logo a {
+  font-family: "Kapakana", cursive;
+  font-size: 2.5rem;
+  font-weight: 400;
+  text-decoration: none;
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+.header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+}
+
+.header-overlay a {
+  color: var(--color-bg);
+}
+
+/* --- ESTADO ACTIVO: BUSCADOR ABIERTO (ESTILO ATTEGA) --- */
+.main-header.search-open {
+  background-color: var(--color-bg) !important;
+}
+
+.main-header.search-open .nav-left a,
+.main-header.search-open .nav-right a,
+.main-header.search-open .logo a {
+  color: var(--color-primary) !important;
+}
+
+/* ==========================================
+   SECCIÓN HERO / HOME
+   ========================================== */
+.hero-section {
+  width: 100%;
+  height: 100vh; 
+  background-image: url('../assets/img/Arima-Imagen portada.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ==========================================
+   CATÁLOGO / PRODUCTOS (SHOP & NEW IN)
+   ========================================== */
+.page-title-container {
+  text-align: center;
+  margin: 1rem 0 3rem 0;
+}
+
+.page-title {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08rem;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+.product-badge {
+  position: absolute;
+  top: 0.625rem;
+  left: 0.625rem;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+  padding: 0.1875rem 0.375rem;
+  z-index: 2;
+  text-transform: uppercase;
+}
+
+.product-badge.badge-sale {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: var(--color-badge-old-price);
+  margin-right: 0.25rem;
+}
+
+.grid-container {
+  display: grid;
+  gap: 2.5rem 1.25rem;
+  grid-template-columns: repeat(4, 1fr); 
+  width: 100%;               
+  margin: 0 0 6.25rem 0;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.product-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-color: var(--color-placeholder);
+  overflow: hidden;
+}
+
+.product-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-title {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-top: 0.75rem;
+  letter-spacing: 0.01875rem;
+}
+
+.product-price {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: var(--color-secondary);
+  margin-top: 0.25rem;
+  letter-spacing: 0.01875rem;
+}
+
+/* ==========================================
+   PÁGINA ABOUT
+   ========================================== */
+main.about-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.about-content p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.85;
+  font-weight: 400;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  text-wrap: balance;
+}
+
+.about-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================
+   PÁGINA LOGIN
+   ========================================== */
+.login-body {
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.login-header {
+  padding: 2.5rem 1rem 1rem 1rem;
+  text-align: center;
+}
+
+.logo-arima {
+  font-family: 'Kapakana', cursive;
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.login-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 23.75rem;
+  text-align: left;
+}
+
+.login-box h1 {
+  font-size: 1.625rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  color: var(--color-primary);
+}
+
+.login-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.btn-shop-pay {
+  width: 100%;
+  background-color: var(--color-shop-pay);
+  color: var(--color-bg);
+  border: none;
+  padding: 0.875rem;
+  border-radius: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-shop-pay:hover {
+  background-color: var(--color-shop-pay-hover);
+}
+
+.btn-shop-pay span {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.25rem 0;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--color-input-border);
+}
+
+.login-divider span {
+  padding: 0 0.75rem;
+  color: var(--color-secondary);
+  font-size: 0.8125rem;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 0.875rem 2.75rem 0.875rem 1rem;
+  border: 0.09375rem solid var(--color-primary);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  outline: none;
+  background-color: var(--color-bg);
+}
+
+.btn-submit {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--color-primary);
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  font-size: 0.8125rem;
+  color: var(--color-primary);
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox-container input {
+  margin-right: 0.5rem;
+  accent-color: var(--color-primary);
+  width: 1rem;
+  height: 1rem;
+}
+
+.terms-text {
+  font-size: 0.75rem;
+  color: var(--color-secondary);
+  text-align: center;
+}
+
+.terms-text a {
+  color: var(--color-primary);
+}
+
+.login-footer {
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+.login-footer a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* ==========================================
+   FOOTER PRINCIPAL
+   ========================================== */
+.main-footer {
+  width: 100%;
+  background-color: var(--color-bg);
+  padding: 4rem 3vw 2rem 3vw;
+  box-sizing: border-box;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.footer-logo a.logo,
+.footer-logo h2 {
+  font-family: 'Kapakana', cursive;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--color-primary);
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1;
+}
+
+.footer-newsletter h4,
+.footer-col h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  color: var(--color-primary);
+}
+
+.footer-newsletter form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 13.75rem;
+}
+
+.footer-newsletter input {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--color-input-border);
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  outline: none;
+  color: var(--color-primary);
+}
+
+.footer-newsletter button {
+  padding: 0.6rem;
+  background-color: #0d0d0d;
+  color: #ffffff;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-col a {
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: var(--color-primary);
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.footer-col a:hover {
+  opacity: 1;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  color: var(--color-primary);
+  opacity: 0.75;
+  padding-top: 1.25rem;
+}
+
+/* Limpieza de inputs de búsqueda */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input::-ms-clear,
+input::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* ==========================================
+   COMPONENTES EMERGENTES DINÁMICOS (SEARCH & BAG)
+   ========================================== */
+
+.site-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.site-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Panel de Búsqueda (Baja justo debajo de la cabecera blanca) */
+.search-drawer {
+  position: fixed;
+  top: 4.375rem;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-input-border);
+  z-index: 1000;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease;
+  box-sizing: border-box;
+}
+
+.search-drawer.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-drawer-content {
+  width: 100%;
+  padding: 1.25rem 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.search-input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 90%;
+}
+
+.search-input-group input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: transparent;
+}
+
+/* Panel de Cesta / Bag (Desliza desde la derecha) */
+.bag-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 23.75rem;
+  height: 100vh;
+  background-color: var(--color-bg);
+  box-shadow: -0.125rem 0 0.625rem rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.bag-drawer.active {
+  transform: translateX(0);
+}
+
+.bag-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5625rem;
+  border-bottom: 1px solid var(--color-input-border);
+}
+
+.bag-header h2 {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.0625rem;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.bag-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5625rem;
+}
+
+.empty-bag-msg {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.09375rem;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.drawer-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  color: var(--color-primary);
+  transition: opacity 0.2s ease;
+}
+
+.drawer-close-btn:hover {
+  opacity: 0.5;
+}
+
+/* ==========================================
+   DISEÑO RESPONSIVE (MEDIA QUERIES)
+   ========================================== */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 0.9375rem;
+  }
+
+  .main-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}

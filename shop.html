@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo completo de productos de Arima.">
+    <title>Arima - Shop</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Arima - Shop">
+    <meta property="og:description" content="Catálogo completo de productos de Arima.">
+    <meta property="og:type" content="website">
+    
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kapakana:wght@300..400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilo.css">
+    <script defer src="js/funciones.js"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="nav-left" aria-label="Navegación izquierda">
+            <a href="new_in.html">NEW IN</a>
+            <a href="shop.html">SHOP</a>
+            <a href="about.html">ABOUT</a>
+        </nav>
+        <div class="logo">
+            <a href="index.html">Arima</a>
+        </div>
+        <nav class="nav-right" aria-label="Navegación derecha">
+            <a href="login.html">LOGIN</a>
+            <a href="#">SEARCH</a>
+            <!--JS: Lectura y actualización del contador del carrito-->
+            <a href="#" id="bagCounter">BAG (0)</a>
+        </nav>   
+    </header>
+
+    <main class="grid-container">
+        <h1 class="visually-hidden">Catálogo de Productos</h1>
+
+        <!--JS: Interacción con el catálogo-->
+        <article class="product-card" data-product-id="top-1">
+            <div class="product-image-wrapper">
+                <img src="assets/img/Top 1.png" alt="Girls T-Shirt">
+            </div>
+            <h2 class="product-title">Girls T-Shirt</h2>
+            <p class="product-price">€75,00 EUR</p>
+        </article>
+
+        <!--JS: Interacción con el catálogo-->
+        <article class="product-card" data-product-id="top-2">
+            <div class="product-image-wrapper">
+                <img src="assets/img/Top 2.png" alt="Candy T-Shirt">
+            </div>
+            <h2 class="product-title">Candy T-Shirt</h2>
+            <p class="product-price">€79,00 EUR</p>
+        </article>
+
+        <!--JS: Interacción con el catálogo-->
+        <article class="product-card" data-product-id="top-3">
+            <div class="product-image-wrapper">
+                <img src="assets/img/Top 3.png" alt="Haze Top">
+            </div>
+            <h2 class="product-title">Haze Top</h2>
+            <p class="product-price">€89,00 EUR</p>
+        </article>
+
+        <!--JS: Interacción con el catálogo-->
+        <article class="product-card" data-product-id="top-4">
+            <div class="product-image-wrapper">
+                <img src="assets/img/Top 4.png" alt="Crystal Hoodie">
+            </div>
+            <h2 class="product-title">Crystal Hoodie</h2>
+            <p class="product-price">€155,00 EUR</p>
+        </article>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <a href="index.html" class="logo">Arima</a>
+            </div>            
+            <div class="footer-newsletter">
+                <h4>NEWSLETTER</h4>
+                <!--JS: Validación del email y envío-->
+                <form id="newsletterForm">
+                    <input type="email" id="newsletterEmail" placeholder="E-mail" required>
+                    <button type="submit">SUBSCRIBE</button>
+                </form>
+            </div>
+            <div class="footer-col">
+                <h4>ASSISTANCE</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping and Returns</a></li>
+                    <li><a href="#">Return/Exchange Request</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Tik Tok</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>LEGAL</h4>
+                <ul>
+                    <li><a href="#">Terms and Conditions</a></li>
+                    <li><a href="#">Legal Notice</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>EUR €</span>
+            <span>© 2026 - ARIMA</span>
+        </div>
+    </footer>
+
+</body>
+</html>
