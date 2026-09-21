@@ -58,22 +58,18 @@ Tal como especifica el enunciado de la asignatura, la estructura HTML/CSS ha que
 
 ```mermaid
 graph TD
+    %% Páginas Principales
     A[index.html - Home] --> B[new_in.html - New In]
     A --> C[shop.html - Shop]
     A --> D[about.html - About]
     A --> E[login.html - Sign In]
 
-    subgraph "Componentes Emergentes (JS)"
+    %% Componentes Globales
+    subgraph Global ["Componentes Emergentes Globales (JS)"]
         F[Search Drawer - Buscador Superior]
         G[Bag Drawer - Panel Lateral Carrito]
     end
 
-    A .-> F
-    A .-> G
-    B .-> F
-    B .-> G
-    C .-> F
-    C .-> G
-    D .-> F
-    D .-> G
+    %% Conexión global limpia
+    A --- Global
 ```
