@@ -6,11 +6,10 @@
     <meta name="description" content="Página principal de Arima. Moda y diseño exclusivo.">
     <title>Arima - Home</title>
     
-    <!-- Open Graph -->
     <meta property="og:title" content="Arima - Home">
     <meta property="og:description" content="Página principal de Arima. Moda y diseño exclusivo.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/img/Arima-Imagen portada.jpg">
+    <meta property="og:image" content="assets/img/arima-imagen-portada.jpg">
     
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +21,12 @@
 <body class="home-page">
 
     <header class="main-header header-overlay">
-        <nav class="nav-left" aria-label="Navegación izquierda">
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLeft">
+            <span class="menu-toggle-bar"></span>
+            <span class="menu-toggle-bar"></span>
+            <span class="menu-toggle-bar"></span>
+        </button>
+        <nav class="nav-left" id="navLeft" aria-label="Navegación izquierda">
             <a href="new_in.html">NEW IN</a>
             <a href="shop.html">SHOP</a>
             <a href="about.html">ABOUT</a>
@@ -32,8 +36,7 @@
         </div>
         <nav class="nav-right" aria-label="Navegación derecha">
             <a href="login.html">LOGIN</a>
-            <a href="#">SEARCH</a>
-            <!--JS: Abrir bolsa de compras-->
+            <a href="#" id="searchBtn">SEARCH</a>
             <a href="#" id="bagCounter">BAG (0)</a>
         </nav>   
     </header>
@@ -50,9 +53,8 @@
 
             <div class="footer-newsletter">
                 <h4>NEWSLETTER</h4>
-                <!--JS: Validación y suscripción-->
-                <form action="#" method="POST">
-                    <input type="email" placeholder="ENTER YOUR EMAIL" required>
+                <form action="#" method="POST" id="newsletterForm">
+                    <input type="email" id="newsletterEmail" placeholder="ENTER YOUR EMAIL" required>
                     <button type="submit">SUBSCRIBE</button>
                 </form>
             </div>

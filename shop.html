@@ -6,7 +6,6 @@
     <meta name="description" content="Catálogo completo de productos de Arima.">
     <title>Arima - Shop</title>
     
-    <!-- Open Graph -->
     <meta property="og:title" content="Arima - Shop">
     <meta property="og:description" content="Catálogo completo de productos de Arima.">
     <meta property="og:type" content="website">
@@ -21,7 +20,12 @@
 <body>
 
     <header class="main-header">
-        <nav class="nav-left" aria-label="Navegación izquierda">
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLeft">
+            <span class="menu-toggle-bar"></span>
+            <span class="menu-toggle-bar"></span>
+            <span class="menu-toggle-bar"></span>
+        </button>
+        <nav class="nav-left" id="navLeft" aria-label="Navegación izquierda">
             <a href="new_in.html">NEW IN</a>
             <a href="shop.html">SHOP</a>
             <a href="about.html">ABOUT</a>
@@ -31,8 +35,7 @@
         </div>
         <nav class="nav-right" aria-label="Navegación derecha">
             <a href="login.html">LOGIN</a>
-            <a href="#">SEARCH</a>
-            <!--JS: Lectura y actualización del contador del carrito-->
+            <a href="#" id="searchBtn">SEARCH</a>
             <a href="#" id="bagCounter">BAG (0)</a>
         </nav>   
     </header>
@@ -40,37 +43,33 @@
     <main class="grid-container">
         <h1 class="visually-hidden">Catálogo de Productos</h1>
 
-        <!--JS: Interacción con el catálogo-->
         <article class="product-card" data-product-id="top-1">
             <div class="product-image-wrapper">
-                <img src="assets/img/Top 1.png" alt="Girls T-Shirt">
+                <img src="assets/img/top-1.png" alt="Girls T-Shirt">
             </div>
             <h2 class="product-title">Girls T-Shirt</h2>
             <p class="product-price">€75,00 EUR</p>
         </article>
 
-        <!--JS: Interacción con el catálogo-->
         <article class="product-card" data-product-id="top-2">
             <div class="product-image-wrapper">
-                <img src="assets/img/Top 2.png" alt="Candy T-Shirt">
+                <img src="assets/img/top-2.png" alt="Candy T-Shirt">
             </div>
             <h2 class="product-title">Candy T-Shirt</h2>
             <p class="product-price">€79,00 EUR</p>
         </article>
 
-        <!--JS: Interacción con el catálogo-->
         <article class="product-card" data-product-id="top-3">
             <div class="product-image-wrapper">
-                <img src="assets/img/Top 3.png" alt="Haze Top">
+                <img src="assets/img/top-3.png" alt="Haze Top">
             </div>
             <h2 class="product-title">Haze Top</h2>
             <p class="product-price">€89,00 EUR</p>
         </article>
 
-        <!--JS: Interacción con el catálogo-->
         <article class="product-card" data-product-id="top-4">
             <div class="product-image-wrapper">
-                <img src="assets/img/Top 4.png" alt="Crystal Hoodie">
+                <img src="assets/img/top-4.png" alt="Crystal Hoodie">
             </div>
             <h2 class="product-title">Crystal Hoodie</h2>
             <p class="product-price">€155,00 EUR</p>
@@ -84,7 +83,6 @@
             </div>            
             <div class="footer-newsletter">
                 <h4>NEWSLETTER</h4>
-                <!--JS: Validación del email y envío-->
                 <form id="newsletterForm">
                     <input type="email" id="newsletterEmail" placeholder="E-mail" required>
                     <button type="submit">SUBSCRIBE</button>

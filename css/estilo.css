@@ -2,6 +2,7 @@
    VARIABLES Y CONFIGURACIÓN GLOBAL
    ========================================== */
 :root {
+  --vh: 1vh; /* Se sobrescribe por JS con la altura real del viewport móvil (ver funciones.js) */
   --color-primary: #111111;
   --color-secondary: #666666;
   --color-bg: #ffffff;
@@ -11,6 +12,10 @@
   --color-shop-pay: #5a31f4;
   --color-shop-pay-hover: #4b23e0;
   --color-badge-old-price: #999999;
+  --color-button-bg: #0d0d0d;
+  --color-button-text: #ffffff;
+  --color-success: #2e7d32;
+  --color-error: #c0392b;
 }
 
 * {
@@ -26,7 +31,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   margin: 0;
   padding: 1.25rem 3vw;
   background-color: var(--color-bg);
@@ -59,7 +64,7 @@ main {
    ========================================== */
 .main-header {
   position: relative;
-  z-index: 1001; /* Capa superior para quedar sobre el overlay al abrir búsqueda */
+  z-index: 1001; /* Siempre nítida y por encima del overlay (999) y de SEARCH (1000); BAG (1002) y el Lightbox (1003) sí se superponen a ella a propósito */
   display: flex;
   justify-content: space-between;
   align-items: center;          
@@ -109,13 +114,67 @@ main {
 
 /* --- ESTADO ACTIVO: BUSCADOR ABIERTO (ESTILO ATTEGA) --- */
 .main-header.search-open {
-  background-color: var(--color-bg) !important;
+  background-color: var(--color-bg);
 }
 
 .main-header.search-open .nav-left a,
 .main-header.search-open .nav-right a,
 .main-header.search-open .logo a {
-  color: var(--color-primary) !important;
+  color: var(--color-primary);
+}
+
+/* --- MENÚ HAMBURGUESA (RESPONSIVE) --- */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3125rem;
+  width: 1.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+.menu-toggle-bar {
+  display: block;
+  width: 100%;
+  height: 0.09375rem;
+  background-color: currentColor;
+  color: var(--color-primary);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.header-overlay .menu-toggle-bar {
+  color: var(--color-bg);
+}
+
+.main-header.nav-open .menu-toggle-bar {
+  color: var(--color-primary);
+}
+
+.main-header.nav-open .menu-toggle-bar:nth-child(1) {
+  transform: translateY(0.4rem) rotate(45deg);
+}
+
+.main-header.nav-open .menu-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.main-header.nav-open .menu-toggle-bar:nth-child(3) {
+  transform: translateY(-0.4rem) rotate(-45deg);
+}
+
+/* --- ESTADO ACTIVO: MENÚ MÓVIL ABIERTO --- */
+.main-header.nav-open {
+  background-color: var(--color-bg);
+}
+
+.main-header.nav-open .nav-left a,
+.main-header.nav-open .nav-right a,
+.main-header.nav-open .logo a {
+  color: var(--color-primary);
 }
 
 /* ==========================================
@@ -123,8 +182,8 @@ main {
    ========================================== */
 .hero-section {
   width: 100%;
-  height: 100vh; 
-  background-image: url('../assets/img/Arima-Imagen portada.jpg'); 
+  height: calc(var(--vh, 1vh) * 100);
+  background-image: url('../assets/img/arima-imagen-portada.jpg'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -255,7 +314,7 @@ main.about-container {
   background-color: var(--color-bg);
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   margin: 0;
   font-family: 'Inter', sans-serif;
 }
@@ -469,8 +528,8 @@ main.about-container {
 
 .footer-newsletter button {
   padding: 0.6rem;
-  background-color: #0d0d0d;
-  color: #ffffff;
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
   border: none;
   font-family: 'Inter', sans-serif;
   font-size: 0.7rem;
@@ -532,14 +591,21 @@ input::-ms-reveal {
    COMPONENTES EMERGENTES DINÁMICOS (SEARCH & BAG)
    ========================================== */
 
+/* Bloquea el scroll de la página mientras un panel (SEARCH/BAG/Lightbox) está abierto */
+html.no-scroll,
+body.no-scroll {
+  overflow: hidden;
+  height: 100%;
+}
+
 .site-overlay {
   position: fixed;
-  top: 0;
+  top: 4.375rem;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100 - 4.375rem);
   background-color: rgba(0, 0, 0, 0.45);
-  z-index: 900;
+  z-index: 999;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -607,10 +673,10 @@ input::-ms-reveal {
   right: 0;
   width: 100%;
   max-width: 23.75rem;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   background-color: var(--color-bg);
   box-shadow: -0.125rem 0 0.625rem rgba(0, 0, 0, 0.05);
-  z-index: 1000;
+  z-index: 1002;
   transform: translateX(100%);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
@@ -670,6 +736,202 @@ input::-ms-reveal {
 }
 
 /* ==========================================
+   LIGHTBOX / VISTA RÁPIDA DE PRODUCTO
+   ========================================== */
+.lightbox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 48rem;
+  background-color: var(--color-bg);
+  z-index: 1003;
+  transform: translate(-50%, -50%) scale(0.96);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.lightbox.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  display: flex;
+  position: relative;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 0.9375rem;
+  right: 0.9375rem;
+  z-index: 2;
+}
+
+.lightbox-image-wrapper {
+  width: 50%;
+  aspect-ratio: 3 / 4;
+  background-color: var(--color-placeholder);
+  overflow: hidden;
+}
+
+.lightbox-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lightbox-info {
+  width: 50%;
+  padding: 2.5rem 1.875rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lightbox-info h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.lightbox-info p#lightboxPrice {
+  font-size: 0.8125rem;
+  color: var(--color-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.btn-add-bag {
+  padding: 0.875rem 1.25rem;
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-add-bag:hover {
+  opacity: 0.85;
+}
+
+.lightbox-feedback {
+  margin-top: 0.9375rem;
+  font-size: 0.75rem;
+  min-height: 1rem;
+}
+
+/* ==========================================
+   CARRITO: LISTADO DE PRODUCTOS Y SUBTOTAL
+   ========================================== */
+.bag-content {
+  flex: 1;
+  padding: 1.25rem 1.5625rem;
+  overflow-y: auto;
+  display: block;
+}
+
+.cart-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cart-item {
+  display: flex;
+  gap: 0.9375rem;
+}
+
+.cart-item-image {
+  width: 4.5rem;
+  aspect-ratio: 3 / 4;
+  background-color: var(--color-placeholder);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.cart-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cart-item-name {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.cart-item-price {
+  font-size: 0.75rem;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.cart-item-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+}
+
+.qty-btn {
+  width: 1.375rem;
+  height: 1.375rem;
+  border: 1px solid var(--color-input-border);
+  background: none;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  line-height: 1;
+  color: var(--color-primary);
+}
+
+.bag-footer {
+  padding: 1.25rem 1.5625rem;
+  border-top: 1px solid var(--color-input-border);
+}
+
+.bag-subtotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+/* ==========================================
+   MENSAJES DE FEEDBACK DE FORMULARIOS
+   ========================================== */
+.form-feedback {
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+  min-height: 1rem;
+}
+
+.form-feedback.is-success {
+  color: var(--color-success);
+}
+
+.form-feedback.is-error {
+  color: var(--color-error);
+}
+
+.login-form .form-feedback {
+  margin-bottom: 0.75rem;
+}
+
+/* ==========================================
    DISEÑO RESPONSIVE (MEDIA QUERIES)
    ========================================== */
 @media (max-width: 768px) {
@@ -679,12 +941,53 @@ input::-ms-reveal {
   }
 
   .main-header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .menu-toggle {
+    display: flex;
+    order: 1;
+  }
+
+  .logo {
+    order: 2;
+  }
+
+  .nav-right {
+    order: 3;
+  }
+
+  .nav-left {
+    order: 4;
+    flex-basis: 100%;
     flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 0.25rem;
+    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  }
+
+  .main-header.nav-open .nav-left {
+    max-height: 12rem;
+    opacity: 1;
+    padding: 1.25rem 0.25rem 0.25rem;
   }
 
   .footer-container {
     flex-direction: column;
     gap: 2rem;
+  }
+
+  .lightbox-content {
+    flex-direction: column;
+    max-width: 90vw;
+  }
+
+  .lightbox-image-wrapper {
+    width: 100%;
   }
 }

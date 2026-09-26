@@ -21,7 +21,13 @@
 <body>
 
     <header class="main-header">
-        <nav class="nav-left" aria-label="Navegación izquierda">
+        <!--JS: Alternar menú de navegación en móvil-->
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLeft">
+            <span class="menu-toggle-bar"></span>
+            <span class="menu-toggle-bar"></span>
+            <span class="menu-toggle-bar"></span>
+        </button>
+        <nav class="nav-left" id="navLeft" aria-label="Navegación izquierda">
             <a href="new_in.html">NEW IN</a>
             <a href="shop.html">SHOP</a>
             <a href="about.html">ABOUT</a>
@@ -31,7 +37,7 @@
         </div>
         <nav class="nav-right" aria-label="Navegación derecha">
             <a href="login.html">LOGIN</a>
-            <a href="#">SEARCH</a>
+            <a href="#" id="searchBtn">SEARCH</a>
             <!--JS: Lectura y actualización del contador del carrito-->
             <a href="#" id="bagCounter">BAG (0)</a>
         </nav>   

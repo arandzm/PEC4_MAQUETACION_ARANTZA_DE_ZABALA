@@ -6,7 +6,6 @@
     <meta name="description" content="Novedades y colección actual de Arima.">
     <title>Arima - New In</title>
     
-    <!-- Open Graph -->
     <meta property="og:title" content="Arima - New In">
     <meta property="og:description" content="Novedades y colección actual de Arima.">
     <meta property="og:type" content="website">
@@ -21,7 +20,12 @@
 <body>
 
     <header class="main-header">
-        <nav class="nav-left" aria-label="Navegación izquierda">
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLeft">
+            <span class="menu-toggle-bar"></span>
+            <span class="menu-toggle-bar"></span>
+            <span class="menu-toggle-bar"></span>
+        </button>
+        <nav class="nav-left" id="navLeft" aria-label="Navegación izquierda">
             <a href="new_in.html">NEW IN</a>
             <a href="shop.html">SHOP</a>
             <a href="about.html">ABOUT</a>
@@ -31,7 +35,7 @@
         </div>
         <nav class="nav-right" aria-label="Navegación derecha">
             <a href="login.html">LOGIN</a>
-            <a href="#">SEARCH</a>
+            <a href="#" id="searchBtn">SEARCH</a>
             <!--JS: Actualización del contador de la cesta-->
             <a href="#" id="bagCounter">BAG (0)</a>
         </nav>   
@@ -40,37 +44,33 @@
     <main class="grid-container">
         <h1 class="visually-hidden">New In - Novedades</h1>
 
-        <!--JS: Clic en el producto para añadir o ver detalles-->
         <article class="product-card" data-product-id="top-5">
             <div class="product-image-wrapper">
-                <img src="assets/img/Top 5.jpg" alt="Printed Pink Top">
+                <img src="assets/img/top-5.jpg" alt="Printed Pink Top">
             </div>
             <h2 class="product-title">Printed Pink Top</h2>
             <p class="product-price">€85,00 EUR</p>
         </article>
 
-        <!--JS: Evento de clic en producto-->
         <article class="product-card" data-product-id="top-6">
             <div class="product-image-wrapper">
-                <img src="assets/img/Top 6.jpg" alt="Polka Dot Top">
+                <img src="assets/img/top-6.jpg" alt="Polka Dot Top">
             </div>
             <h2 class="product-title">Polka Dot Top</h2>
             <p class="product-price">€79,00 EUR</p>
         </article>
 
-        <!--JS: Evento de clic en producto-->
         <article class="product-card" data-product-id="top-7">
             <div class="product-image-wrapper">
-                <img src="assets/img/Top 7.jpg" alt="Lace Pink Top">
+                <img src="assets/img/top-7.jpg" alt="Lace Pink Top">
             </div>
             <h2 class="product-title">Lace Pink Top</h2>
             <p class="product-price">€89,00 EUR</p>
         </article>
 
-        <!--JS: Evento de clic en producto-->
         <article class="product-card" data-product-id="top-8">
             <div class="product-image-wrapper">
-                <img src="assets/img/Top 8.jpg" alt="Classic Grey Top">
+                <img src="assets/img/top-8.jpg" alt="Classic Grey Top">
             </div>
             <h2 class="product-title">Classic Grey Top</h2>
             <p class="product-price">€95,00 EUR</p>
@@ -84,7 +84,6 @@
             </div>            
             <div class="footer-newsletter">
                 <h4>NEWSLETTER</h4>
-                <!--JS: Validación del email-->
                 <form id="newsletterForm">
                     <input type="email" id="newsletterEmail" placeholder="E-mail" required>
                     <button type="submit">SUBSCRIBE</button>

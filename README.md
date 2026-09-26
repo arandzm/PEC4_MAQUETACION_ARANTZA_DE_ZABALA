@@ -1,75 +1,62 @@
-# Arima — Maquetación Web (PEC 4)
+# Arima — Maquetación Web + JavaScript (PEC 4 + PEC 5)
 
-Este proyecto consiste en la maquetación web funcional y responsive para la marca de moda e-commerce **Arima**, desarrollada a partir de los prototipos creados en Figma durante la PEC 3.
+Proyecto e-commerce para la marca de moda **Arima**. Este proyecto parte de la maquetación en HTML5 y CSS3 realizada en la PEC 4 y añade interactividad completa mediante **JavaScript**.
 
-**Diseño de Figma:** [Ver prototipo en Figma](https://www.figma.com/design/I8KBoaTsfvGvF4PxEJKCN6/Wireframes-proyecto-a-MANO-e-IR?node-id=0-1&t=7fC2Z7V9XzgP0cLr-1)
-
----
-
-## 1. Páginas Maquetadas
-
-El sitio cuenta con un total de **5 páginas HTML totalmente maquetadas** y navegables:
-
-* **`index.html`**: Portada principal con imagen *Hero* a pantalla completa y menú de navegación integrado.
-* **`new_in.html`**: Sección con los últimos lanzamientos y novedades de la marca presentados en cuadrícula.
-* **`shop.html`**: Catálogo completo de productos organizado mediante un layout adaptable de 4 columnas.
-* **`about.html`**: Página corporativa con la historia, concepto y valores de la marca.
-* **`login.html`**: Formulario de acceso de usuarios y suscripción a novedades.
+- **Diseño Figma de referencia:** [https://www.figma.com/design/JOlPAE8DV9Dc80r3zVf2Hh/Wireframe-tienda?node-id=0-1&t=PHK7MH8v5Mrt9nQX-1]
 
 ---
 
-## 2. Componentes Reutilizables
+## 1. Interacciones JavaScript (PEC 5)
 
-* **Header Principal (`.main-header`)**: Cabecera distribuida mediante Flexbox con menú izquierdo, logotipo tipográfico central y opciones de usuario (*Search* y *Bag*).
-* **Tarjeta de Producto (`.product-card`)**: Componente dinámico modular utilizado en el catálogo para presentar la foto, título y precio de cada prenda.
-* **Footer Global (`.main-footer`)**: Pie de página unificado organizado por columnas temáticas con formulario de suscripción a la newsletter.
-* **Paneles Emergentes (`.search-drawer` y `.bag-drawer`)**: Componentes deslizantes (*Side Drawer* y *Top Drawer*) acompañados de un *overlay* oscuro que se inyectan en cualquier página.
+Todo el código de comportamiento se encuentra en un único archivo externo: `js/funciones.js`. Se han utilizado eventos del DOM, manejo de clases CSS y **delegación de eventos** para mantener un código eficiente y organizado. No se utiliza JavaScript intrusivo (sin atributos `onclick` en HTML).
 
----
-
-## 3. Bloques Preparados para JS (PEC 5)
-
-Tal como especifica el enunciado de la asignatura, la estructura HTML/CSS ha quedado totalmente preparada con selectores e IDs para ser dotada de lógica interactiva en la PEC 5:
-
-* **Despliegue de Paneles (Search & Bag):** Intercepción de clics en la barra de navegación para abrir/cerrar drawers y pulsar la tecla `ESC`.
-* **Carrito y Cesta de Compras:** Función para añadir productos desde la tarjeta, calcular el subtotal y actualizar el número de prendas en `BAG (X)`.
-* **Filtrado y Buscador:** Búsqueda en tiempo real dentro del panel `SEARCH FOR...` y filtrado dinámico en `shop.html`.
-* **Validación de Formularios:** Comprobación de formatos de email tanto en el formulario de acceso como en la newsletter.
+| # | Interacción | Páginas | Descripción |
+|---|---|---|---|
+| 1 | **Menú Hamburguesa** | Todas (menos `login.html`) | Permite abrir y cerrar la navegación en dispositivos móviles mediante la clase `.nav-open`. Se puede cerrar con el botón, haciendo clic en el overlay o con la tecla `Escape`. |
+| 2 | **Buscador Desplegable y Filtro** | Todas | El botón `SEARCH` despliega el panel `.search-drawer`. Si el usuario busca desde `shop.html`, filtra los productos en tiempo real. Desde cualquier otra página, redirige a la tienda con el término de búsqueda. |
+| 3 | **Cesta / Carrito (`Bag`)** | Todas | Abre el panel lateral `.bag-drawer`. Permite añadir productos, modificar cantidades (`+` / `-`), calcular el precio subtotal y actualizar el contador del header (`BAG (X)`). Guarda los datos en `localStorage`. |
+| 4 | **Vista Rápida (Lightbox)** | `shop.html`, `new_in.html` | Al hacer clic en la tarjeta de un producto, se abre una ventana emergente (`.lightbox`) con los detalles de la prenda y la opción de añadirla directamente al carrito. |
+| 5 | **Validación de Formularios** | Todas | Valida los inputs de correo electrónico en la Newsletter (footer) y en la página de Login mediante expresiones regulares, mostrando mensajes de confirmación sin recargar la página. |
 
 ---
 
-## 4. Dificultades y Soluciones Técnicas
+## 2. Bloques Finalizados y Correcciones
 
-1. **Evolución de páginas estáticas a componentes dinámicos:**
-   * *Reto:* Inicialmente se plantearon vistas estáticas independientes para la búsqueda y la bolsa. Sin embargo, esto impedía abrirlas por encima de la página en la que el usuario estaba navegando.
-   * *Solución:* Se unificó el estilo en `.search-drawer` y `.bag-drawer` junto con una capa de oscuridad global (`.site-overlay`), logrando que aparezcan suavemente sobre cualquier pantalla sin recargar la web.
-
-2. **Ajuste y alineación del buscador:**
-   * *Reto:* La barra de búsqueda tapaba la cabecera completa al desplegarse.
-   * *Solución:* Se ajustó la posición superior (`top`) para que la barra quede perfectamente encajada debajo del menú de navegación, imitando la experiencia de tiendas de referencia como Attega.
-
-3. **Cumplimiento de unidades relativas:**
-   * *Reto:* Se detectaron valores fijos en píxeles que ponían en riesgo la flexibilidad del diseño en diferentes pantallas.
-   * *Solución:* Se convirtieron los valores a unidades `rem`, `em` y porcentajes, garantizando una adaptación fluida.
+- **Paneles interactivos conectados:** Conexión completa de los paneles `.search-drawer` y `.bag-drawer` creados en la PEC 4.
+- **Lightbox de producto:** Incorporación de la vista rápida de prendas.
+- **Cálculo dinámico de posiciones:** Cálculo de la altura del header mediante JS (`getBoundingClientRect()`) para asegurar que el buscador y el overlay se posicionen correctamente en todas las pantallas.
+- **Control de scroll:** Aplicación de la clase `no-scroll` en `body` cuando hay un panel abierto para evitar el desplazamiento de la página de fondo.
+- **Z-Index y Capas:** Reordenamiento de la pila de capas CSS para evitar que el header quede tapado o ensombrecido por el overlay.
 
 ---
 
-## 5. Diagrama de Navegación del Sitio
+## 3. Estructura de Páginas
+
+El sitio se compone de 5 páginas HTML totalmente funcionales:
+
+* **`index.html`**: Portada principal con portada *Hero*.
+* **`new_in.html`**: Novedades y catálogo reciente.
+* **`shop.html`**: Catálogo completo de productos.
+* **`about.html`**: Historia y valores de la marca.
+* **`login.html`**: Acceso de usuarios y registro.
+
+---
+
+## 4. Diagrama del Flujo de Interacción
 
 ```mermaid
 graph TD
-    %% Páginas Principales
-    A[index.html - Home] --> B[new_in.html - New In]
-    A --> C[shop.html - Shop]
-    A --> D[about.html - About]
-    A --> E[login.html - Sign In]
+    A[Páginas HTML] --> B[Navegación / Header]
+    A --> C[Catálogo de Productos]
+    A --> D[Formularios]
 
-    %% Componentes Globales
-    subgraph Global ["Componentes Emergentes Globales (JS)"]
-        F[Search Drawer - Buscador Superior]
-        G[Bag Drawer - Panel Lateral Carrito]
-    end
+    B -->|Click en Menú| M[Menú Hamburguesa]
+    B -->|Click en SEARCH| S[Search Drawer]
+    B -->|Click en BAG| G[Bag Drawer / Carrito]
 
-    %% Conexión global limpia
-    A --- Global
-```
+    C -->|Click en Producto| L[Lightbox / Vista Rápida]
+    L -->|Añadir| G
+
+    D -->|Validar Email| V[Feedback al Usuario]
+
+    G -->|Guardar datos| P[(localStorage)]
